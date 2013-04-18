@@ -1,7 +1,11 @@
 module Dav
   class ResourcesController < ApplicationController
 
-    before_filter :assert_exist, :only => [:survey, :delete]
+    before_filter :assert_exist, :only => [:show, :survey, :delete]
+
+    def show
+      send_file resource.absolute_path, :type => resource.type, :disposition => :inline
+    end
 
     def survey
       @responses = [ Response::OK.new(resource, mount_point) ]
