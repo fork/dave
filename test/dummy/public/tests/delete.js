@@ -25,8 +25,27 @@ asyncTest("DELETE " + prefix + "/non-existing-resource", function() {
 	});
 });
 asyncTest("DELETE " + prefix + "/existing-collection/", function() {
-	
+	DAV.delete(prefix + '/existing-collection/').
+	done(function(response) {
+		ok(response.status === 204, "responds with " + response.status + " (expected 204).")
+		start();
+	}).
+	fail(function(status, response) {
+		ok(false, "should respond with 204.");
+		start();
+	}).
+	always(function() {
+		DAV.mkcol(prefix + '/existing-collection/');
+	});
 });
 asyncTest("DELETE " + prefix + "/non-existing-collection/", function() {
-	
+	DAV.delete(prefix + '/non-existing-collection/').
+	done(function(response) {
+		ok(false, "should respond with 404.")
+		start();
+	}).
+	fail(function(status, response) {
+		ok(response.status === 404, "responds with " + response.status + " (expected 404).");
+		start();
+	});
 });
