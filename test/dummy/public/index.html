@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>QUnit Example</title>
-  <link rel="stylesheet" href="/resources/qunit.css">
+  <title>DAVe Integration Test</title>
+  <link rel="stylesheet" href="/qunit.css">
 </head>
 <body>
   <div id="qunit"></div>
@@ -15,7 +15,16 @@
   <script src="/assets/dav/methods.js"></script>
   <script src="/assets/dav/resource.js"></script>
 
-  <script src="/resources/qunit.js"></script>
-  <script src="/resources/tests.js"></script>
+  <script src="/qunit.js"></script>
+
+  <script type="text/javascript" charset="utf-8">
+      window.prefix = '/dav';
+  </script>
+
+  <script src="/tests/propfind.js"></script>
+  <script src="/tests/mkcol.js"></script>
+  <script src="/tests/delete.js"></script>
+  <script src="/tests/put.js"></script>
+  <script src="/tests/get.js"></script>
 </body>
 </html>
