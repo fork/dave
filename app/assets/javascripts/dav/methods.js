@@ -1,7 +1,6 @@
 /*
- * WARNING
- *
- * These methods should not be called directly!
+ * WARNING: These methods should not be called directly!
+ * RADAR: check http://stackoverflow.com/a/9478670
  */
 (function(_, $, undef) {
 
@@ -70,7 +69,7 @@
 					defer.reject('Collection already exists.', response);
 					break;
 				case 409:
-					defer.reject('Parent collection does not exist.', response);
+					defer.reject('MKCOL without parent collection.', response);
 					break;
 				default:
 					defer.reject('Invalid status code.', response);
@@ -89,6 +88,39 @@
 			'url':         url
 		}).complete(function(response) {
 			switch (response.status) {
+				case 204:
+					defer.resolve(response);
+					break;
+				case 404:
+					defer.reject('Resource not found.', response);
+					break;
+				default:
+					defer.reject('Invalid status code.', response);
+			}
+		});
+
+		return defer;
+	}
+	_.put = function(url, data, type) {
+		var defer = $.Deferred();
+
+		$.ajax({
+			'type':        'PUT',
+			'data':        data,
+			'contentType': type || 'application/octet-stream',
+			'processData': false,
+			'url':         url
+		}).complete(function(response) {
+			switch (response.status) {
+				case 201:
+					defer.resolve(response);
+					break;
+				case 405:
+					defer.reject('PUT cannot create collections.', response);
+					break;
+				case 409:
+					defer.reject('PUT without parent collection.', response);
+					break;
 				default:
 					defer.reject('Invalid status code.', response);
 			}

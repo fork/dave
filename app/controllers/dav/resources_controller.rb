@@ -9,8 +9,12 @@ module Dav
     end
 
     def store
-      # TODO ...
-      expire_fragment cache_path(response.content, '*')
+      resource.body = request.body.read
+      resource.save
+
+      expire_fragment cache_path(resource, '*')
+
+      render :nothing => true, :status => 201
     end
 
     def delete
