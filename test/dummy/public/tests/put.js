@@ -10,6 +10,20 @@
 			start();
 		});
 	});
+	asyncTest("PUT " + prefix + "/non-existing-resource", function() {
+		DAV.put(prefix + '/non-existing-resource', content).
+		done(function(response) {
+			equal(response.status, 201, "responds with " + response.status + " (expected 201).");
+			start();
+		}).
+		fail(function(status, response) {
+			ok(false, "should not respond with " + response.status + '.');
+			start();
+		}).
+		always(function() {
+			DAV.delete(prefix + '/non-existing-resource');
+		});
+	});
 	asyncTest("PUT " + prefix + "/existing-collection/", function() {
 		DAV.put(prefix + '/existing-collection/', content).
 		done(function(response) {
