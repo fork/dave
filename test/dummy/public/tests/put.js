@@ -2,7 +2,7 @@
 	asyncTest("PUT " + prefix + "/existing-resource", function() {
 		DAV.put(prefix + '/existing-resource', content).
 		done(function(response) {
-			ok(response.status === 201, "responds with " + response.status + " (expected 201).");
+			equal(response.status, 201, "responds with " + response.status + " (expected 201).");
 			start();
 		}).
 		fail(function(status, response) {
@@ -17,7 +17,7 @@
 			start();
 		}).
 		fail(function(status, response) {
-			ok(response.status === 404, "responds with " + response.status + " (expected 404).");
+			equal(response.status, 404, "responds with " + response.status + " (expected 404).");
 			start();
 		});
 	});

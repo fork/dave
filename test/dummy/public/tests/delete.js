@@ -1,7 +1,7 @@
 asyncTest("DELETE " + prefix + "/existing-resource", function() {
 	DAV.delete(prefix + '/existing-resource').
 	done(function(response) {
-		ok(response.status === 204, "responds with " + response.status + " (expected 204).")
+		equal(response.status, 204, "responds with " + response.status + " (expected 204).")
 		start();
 	}).
 	fail(function(status, response) {
@@ -20,14 +20,14 @@ asyncTest("DELETE " + prefix + "/non-existing-resource", function() {
 		start();
 	}).
 	fail(function(status, response) {
-		ok(response.status === 404, "responds with " + response.status + " (expected 404).");
+		equal(response.status, 404, "responds with " + response.status + " (expected 404).");
 		start();
 	});
 });
 asyncTest("DELETE " + prefix + "/existing-collection/", function() {
 	DAV.delete(prefix + '/existing-collection/').
 	done(function(response) {
-		ok(response.status === 204, "responds with " + response.status + " (expected 204).")
+		equal(response.status, 204, "responds with " + response.status + " (expected 204).")
 		start();
 	}).
 	fail(function(status, response) {
@@ -45,7 +45,7 @@ asyncTest("DELETE " + prefix + "/non-existing-collection/", function() {
 		start();
 	}).
 	fail(function(status, response) {
-		ok(response.status === 404, "responds with " + response.status + " (expected 404).");
+		equal(response.status, 404, "responds with " + response.status + " (expected 404).");
 		start();
 	});
 });

@@ -1,7 +1,7 @@
 asyncTest("MKCOL " + prefix + "/non-existing/", function() {
 	DAV.mkcol(prefix + '/non-existing/').
 	done(function(response) {
-		ok(response.status === 201, "responds with " + response.status + " (expected 201).");
+		equal(response.status, 201, "responds with " + response.status + " (expected 201).");
 		start();
 	}).
 	fail(function(status, response) {
@@ -19,7 +19,7 @@ asyncTest("MKCOL " + prefix + "/non-existing", function() {
 		start();
 	}).
 	fail(function(status, response) {
-		ok(response.status === 404, "responds with " + response.status + " (expected 404).");
+		equal(response.status, 404, "responds with " + response.status + " (expected 404).");
 		start();
 	}).
 	always(function() {
@@ -33,7 +33,7 @@ asyncTest("MKCOL " + prefix + "/existing-collection/", function() {
 		start();
 	}).
 	fail(function(status, response) {
-		ok(response.status === 405, "responds with " + response.status + " (expected 405).");
+		equal(response.status, 405, "responds with " + response.status + " (expected 405).");
 		start();
 	});
 });
@@ -44,7 +44,7 @@ asyncTest("MKCOL " + prefix + "/non-existing/non-existing/", function() {
 		start();
 	}).
 	fail(function(status, response) {
-		ok(response.status === 409, "responds with " + response.status + " (expected 409).");
+		equal(response.status, 409, "responds with " + response.status + " (expected 409).");
 		start();
 	}).
 	always(function() {
