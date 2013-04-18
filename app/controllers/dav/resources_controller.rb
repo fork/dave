@@ -19,7 +19,7 @@ module Dav
 
     def delete
       resource.remove
-      expire_fragment cache_path(response.content, '*')
+      expire_fragment cache_path(resource, '*')
 
       render :nothing => true, :status => 204
     end
