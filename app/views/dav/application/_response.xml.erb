@@ -1,0 +1,12 @@
+<%= cache cache_path(response.content, 'allprop') do %>
+<d:response>
+	<d:href><%= response.href %></d:href>
+	<d:propstat>
+		<d:status><%= response.status %></d:status>
+		<d:prop>
+			<d:getcontenttype><%= response.content.type %></d:getcontenttype>
+			<d:getcontentlength><%= response.content.length %></d:getcontentlength>
+		</d:prop>
+	</d:propstat>
+</d:response>
+<% end %>
