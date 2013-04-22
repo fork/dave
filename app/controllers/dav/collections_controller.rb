@@ -26,12 +26,5 @@ module Dav
       render :nothing => true, :status => status
     end
 
-    def delete
-      resource.remove
-      expire_fragment cache_path(resource, '*')
-
-      render :nothing => true, :status => 204
-    end
-
   end
 end

@@ -76,12 +76,11 @@ module Dav
     root :to      => 'collections#survey', :constraints => But.only(:propfind, :collection)
     match '*path' => 'collections#survey', :constraints => But.only(:propfind, :collection)
     match '*path' => 'collections#create', :constraints => But.only(:mkcol, :collection)
-    match '*path' => 'collections#delete', :constraints => But.only(:delete, :collection)
 
     match '*path' => 'resources#survey',   :constraints => But.only(:propfind)
     match '*path' => 'resources#show',     :constraints => But.only(:get).and_not(:collection)
     match '*path' => 'resources#store',    :constraints => But.only(:put).and_not(:collection)
-    match '*path' => 'collections#delete', :constraints => But.only(:delete)
+    match '*path' => 'resource#delete', :constraints => But.only(:delete)
 
   end
 
