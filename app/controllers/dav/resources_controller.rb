@@ -13,6 +13,14 @@ module Dav
     end
 
     def store
+      # TODO don't write all at once...
+
+      # 1. create a temporary file
+      # 2. write to temporary file
+      # 3. rename original file
+      # 4. rename temporary file
+      # 5. delete renamed original file
+
       resource.body = request.body.read
       resource.save
 
