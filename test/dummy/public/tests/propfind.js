@@ -1,6 +1,16 @@
 (function() {
 
 	function contains(basename, document) {
+		var tags = document.getElementsByTagNameNS('DAV:', 'href'), success = false;
+		var i = 0, ii = tags.length;
+
+		while (!success || i > ii) {
+			var href = tags[i].textContent;
+			// ...
+			i++;
+		}
+
+		ok(success, "should contain " + basename + ".");
 	}
 
 	asyncTest("PROPFIND " + "/", function() {
